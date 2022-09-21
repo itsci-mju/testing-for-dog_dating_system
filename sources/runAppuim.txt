@@ -1,0 +1,5 @@
+{
+  "platformName": "Android",
+  "platformVersion": "9.0",
+  "deviceName": "emulator-5554"
+}
