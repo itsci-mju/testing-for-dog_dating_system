@@ -22,7 +22,7 @@ ${Status}
 
 *** Test Cases ***
 TC01_Login
-    Start Video Recording   alias=None  name=TC01_Login  fps=None    size_percentage=1   embed=True  embed_width=100px   monitor=1
+   # Start Video Recording   alias=None  name=TC01_Login  fps=None    size_percentage=1   embed=True  embed_width=100px   monitor=1
     Open Excel Document    D://Project_Final//TestData//TC01-Login_1.xlsx  doc_id:TestData_01
     ${eclin}    Get Sheet  TestData_01
     FOR    ${i}    IN RANGE   2    ${eclin.max_row+1}
@@ -50,12 +50,12 @@ TC01_Login
         Write Excel Cell        ${i}    6       value=${Status}           sheet_name=TestData_01
         Write Excel Cell        ${i}    7       value=${Error}        sheet_name=TestData_01
         Write Excel Cell        ${i}    8       value=${Suggestion}        sheet_name=TestData_01
-
+     
     END  
     Save Excel Document       D://Project_Final//TestResult//TC01_Login//WriteExcel//TC01-Login_Result.xlsx
     Close All Excel Documents
     Close Application
-    Stop Video Recording      alias=None
+   # Stop Video Recording      alias=None
 
 *** Keywords ***
 Open DogDating Application
@@ -77,6 +77,7 @@ KeyInformation
     Input Text  ${US_VB}  ${username}
     Input Text  ${PW_VB}  ${password}
     Click Element  ${BT_SIGNIN}
+    Sleep  3s
 
 # LogOut
 #   Wait Until Page Contains Element  ${Profile_page} 3s
@@ -104,14 +105,14 @@ Check Error page
          ${message}  Check Home Page  ${Matching_VB} 
         
     ELSE  
-        Wait Until Element Is Visible  ${alert_login}
+        Wait Until Element Is Visible  ${alert_login} 
         ${checkVisible}  Run Keyword And Return Status  Page Should Contain Element  ${alert_login}   
         Log To Console  ${checkVisible}
         IF  '${checkVisible}' == 'True'
             Wait Until Element Is Visible  ${alert_login} 
             ${get_message}  Get Text  ${alert_login}
             ${message}  Convert To String  ${get_message}
-            Click Element  ${submit_alert}
+           # Click Element  ${submit_alert}
         END
     END
 
